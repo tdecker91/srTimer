@@ -23,8 +23,6 @@ The timer looks for a tag to output the time on by id 'timer-face' Reconfigure t
 ```javascript
 ...
 
-	// CSS
-	puzzleSelectID : 'puzzle-select',
 	timerID : 'timer-face',
 	readyClass : 'time-ready'
 

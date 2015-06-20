@@ -2,6 +2,16 @@
 Configurable javascript timer application. Originally made to run my cube timer app at http://www.solvingrubik.com/
 Can easily be included and configured to work on any webpage.
 
+## Instalation
+Download the timer.js file and put it in your web directory.
+
+OR
+
+Install the package using bower
+```
+bower install --save srTimer
+```
+
 ## Usage
 
 The timer requires jQuery. Include timer.js in your web page.

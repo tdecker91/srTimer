@@ -1,0 +1,22 @@
+{
+  "name": "srTimer",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tdecker91/srTimer",
+  "authors": [
+    "Tyson Decker <tyson.decker@gmail.com>"
+  ],
+  "description": "Configurable javascript timer",
+  "main": "js/timer.js",
+  "keywords": [
+    "javascript",
+    "timer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

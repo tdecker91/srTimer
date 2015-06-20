@@ -24,3 +24,5 @@ The timer looks for a tag to output the time on by id 'timer-face' Reconfigure t
 ```html
 <h1 id="timer-face"></h1>
 ```
+
+Start/stop the timer by pressing the spacebar. Starting the timer again will restart the timer.

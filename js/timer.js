@@ -141,8 +141,11 @@ SRModules.timer = (function() {
 
 	Timer.reset = function()
 	{
-		startTime = undefined;
-		fireListeners(resetListeners, {});
+		if (!running)
+		{
+			startTime = undefined;
+			fireListeners(resetListeners, {});
+		}
 	}
 
 	Timer.isRunning = function()

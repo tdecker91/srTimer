@@ -6,12 +6,15 @@ var config =
 
 	// Timer
 	milisecondDigitsToDisplay: 2,
+	updateDisplayInterval : 15,
 
 	// Controls
 	timerKey : 32, 				// space
-	timerID : 'timer-face',
+
+	// CSS
 	puzzleSelectID : 'puzzle-select',
-	updateDisplayInterval : 15
+	timerID : 'timer-face',
+	readyClass : 'time-ready'
 
 }
 
@@ -161,12 +164,12 @@ SRModules.timerController = (function(){
 
 	controller.setTimerDisplayReady = function()
 	{
-		$('#' + config.timerID).addClass('time-ready');
+		$('#' + config.timerID).addClass(config['readyClass']);
 	}
 
 	controller.setTimerDisplayWaiting = function()
 	{
-		$('#' + config.timerID).removeClass('time-ready');
+		$('#' + config.timerID).removeClass(config['readyClass']);
 	}
 
 	controller.updateDisplay = function()

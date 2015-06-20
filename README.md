@@ -36,7 +36,7 @@ The timer looks for a tag to output the time on by id 'timer-face' Reconfigure t
 Start/stop the timer by pressing the spacebar. Starting the timer again will restart the timer.
 
 ## Registering Listeners
-Listeners can be registered to receive events when the timer starts, stops, or is reset. This allows the timer to call your custom code to fit any of your application's needs. 
+Listeners can be registered to receive events when the timer starts, stops, or resets. This allows the timer to call your custom code to fit any of your application's needs. 
 ```javascript
 SRModules.timer.addStopListener(function(e){
 

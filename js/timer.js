@@ -19,14 +19,8 @@ var config =
 	updateDisplayInterval : 15,
 
 	timerKey : 32, 				// space
-
-	puzzleSelectID : 'puzzle-select',
 	timerID : 'timer-face',
-	readyClass : 'time-ready',
-
-	// Scrambler
-	scramblerEnabled : true,
-	scrambleViewID : 'scrambler'
+	readyClass : 'time-ready'
 
 }
 
@@ -38,6 +32,9 @@ SRModules.timer = (function() {
 	var endTime = 0;
 	var running = false;
 	var timeHistory = [];
+	var startListeners = [];
+	var stopListeners = [];
+	var resetListeners = [];
 
 	/**
 	 * adds 0's to the front of a number returns a string representation of the number
@@ -111,6 +108,20 @@ SRModules.timer = (function() {
 
 	}
 
+	/**
+	 * Fires all listeners in the given array and passes in 
+	 * the arguments to the listener function
+	 * @param  {array<function>} listeners
+	 * @param  {object} args      arguments to pass into the listener
+	 * @return {void}
+	 */
+	function fireListeners(listeners, args)
+	{
+		listeners.forEach(function(listener){
+			listener(args);
+		});
+	}
+
 
 	var Timer = {};
 
@@ -118,12 +129,14 @@ SRModules.timer = (function() {
 	{
 		running = true;
 		startTime = new Date().getTime();
+		fireListeners(startListeners, {});
 	}
 
 	Timer.stop = function()
 	{
 		running = false;
 		endTime = new Date().getTime();
+		fireListeners(stopListeners, {time:Timer.getRawElapsedTime()});
 	}
 
 	Timer.reset = function()
@@ -136,9 +149,21 @@ SRModules.timer = (function() {
 		return running;
 	}
 
+	/**
+	 * Gives the current elapsed time as a formatted string
+	 * @return {string} the elapsed time
+	 */
 	Timer.getElapsedTime = function()
 	{
+		return formatTime(Timer.getRawElapsedTime());
+	}
 
+	/**
+	 * Returns the current elapsed time in miliseconds
+	 * @return {int} the elapsed time
+	 */
+	Timer.getRawElapsedTime = function()
+	{
 		if (startTime == undefined)
 		{
 			return formatTime(startTime);
@@ -155,7 +180,22 @@ SRModules.timer = (function() {
 			elapsedTime = new Date(endTime - startTime);
 		}
 
-		return formatTime(elapsedTime.getTime());
+		return elapsedTime.getTime();
+	}
+
+	Timer.addStartListener = function(listener)
+	{
+		startListeners.push(listener);
+	}
+
+	Timer.addStopListener = function(listener)
+	{
+		stopListeners.push(listener);
+	}
+
+	Timer.addResetListener = function(listener)
+	{
+		resetListeners.push(listener);
 	}
 
 	return Timer;
@@ -250,12 +290,3 @@ window.onkeydown = function(e) {
 			break;
 	}
 }
-
-$(document).ready(function(){
-	$("#" + config.puzzleSelectID).on('change', function(){
-
-		// Force focus away
-		$(':focus').blur()
-	
-	});
-});

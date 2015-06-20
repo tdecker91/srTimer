@@ -1,5 +1,5 @@
 # srTimer
-Configurable javascript timer application. Originally made to run my cube timer app at http://www.solvingrubik.com/
+Simple javascript timer application. Originally made to run my cube timer app at http://www.solvingrubik.com/
 Can easily be included and configured to work on any webpage.
 
 ## Instalation
@@ -34,3 +34,15 @@ The timer looks for a tag to output the time on by id 'timer-face' Reconfigure t
 ```
 
 Start/stop the timer by pressing the spacebar. Starting the timer again will restart the timer.
+
+## Regisering Listeners
+Listeners can be registered to receive events when the timer starts, stops, or is reset. This allows the timer to call your custom code to fit any of your application's needs. 
+```javascript
+SRModules.timer.addStopListener(function(e){
+
+	console.log('Received stop event', e);
+	
+	// Add custom event listener code
+	
+});
+```

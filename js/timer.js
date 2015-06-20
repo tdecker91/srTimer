@@ -31,6 +31,7 @@ SRModules.timer = (function() {
 	var startTime = 0;
 	var endTime = 0;
 	var running = false;
+	var isReset = false;
 	var timeHistory = [];
 	var startListeners = [];
 	var stopListeners = [];
@@ -127,6 +128,7 @@ SRModules.timer = (function() {
 
 	Timer.start = function()
 	{
+		isReset = false;
 		running = true;
 		startTime = new Date().getTime();
 		fireListeners(startListeners, {});
@@ -141,8 +143,9 @@ SRModules.timer = (function() {
 
 	Timer.reset = function()
 	{
-		if (!running)
+		if (!isReset)
 		{
+			isReset = true;
 			startTime = undefined;
 			fireListeners(resetListeners, {});
 		}

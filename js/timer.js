@@ -155,6 +155,11 @@ SRModules.timer = (function() {
 	 */
 	Timer.getElapsedTime = function()
 	{
+		if (startTime == undefined)
+		{
+			return formatTime(startTime);
+		}
+
 		return formatTime(Timer.getRawElapsedTime());
 	}
 
@@ -166,7 +171,7 @@ SRModules.timer = (function() {
 	{
 		if (startTime == undefined)
 		{
-			return formatTime(startTime);
+			return 0;
 		}
 
 		var elapsedTime;

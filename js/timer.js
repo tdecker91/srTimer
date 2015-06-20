@@ -1,3 +1,13 @@
+/*
+
+	Name: timer.js
+	Author: Tyson Decker
+	Email: tyson.decker@gmail.com
+
+	Description: Configurable javascript timing app for use on www.solvingrubik.com
+
+ */
+
 var SRModules = SRModules || {};
 
 // Configurations
@@ -8,13 +18,15 @@ var config =
 	milisecondDigitsToDisplay: 2,
 	updateDisplayInterval : 15,
 
-	// Controls
 	timerKey : 32, 				// space
 
-	// CSS
 	puzzleSelectID : 'puzzle-select',
 	timerID : 'timer-face',
-	readyClass : 'time-ready'
+	readyClass : 'time-ready',
+
+	// Scrambler
+	scramblerEnabled : true,
+	scrambleViewID : 'scrambler'
 
 }
 
@@ -27,6 +39,12 @@ SRModules.timer = (function() {
 	var running = false;
 	var timeHistory = [];
 
+	/**
+	 * adds 0's to the front of a number returns a string representation of the number
+	 * @param  {int} number
+	 * @param  {int} digits how many digits the final number should be
+	 * @return {string} 	string representation of the number
+	 */
 	function prependZeros(number, digits)
 	{
 		var stringNumber = number.toString();
@@ -40,6 +58,12 @@ SRModules.timer = (function() {
 		return stringNumber;
 	}
 
+	/**
+	 * add 0's to the end of a number
+	 * @param  {int} number
+	 * @param  {int} digits
+	 * @return {string}
+	 */
 	function appendZeros(number, digits)
 	{
 		var stringNumber = number.toString();
@@ -53,11 +77,23 @@ SRModules.timer = (function() {
 		return stringNumber;
 	}
 
+	/**
+	 * formats milliseconds for display on the timer face
+	 * by padding with 0s as necessary
+	 * @param  {int} number the number of miliseconds
+	 * @param  {int} digits how many digits the timer face diplays (2-3)
+	 * @return {string}
+	 */
 	function formatMiliseconds(number, digits)
 	{
 		return prependZeros(number, 3).substring(0,digits);
 	}
 
+	/**
+	 * Converts milliseconds to a clock face display ex. "00:00.0"
+	 * @param  {int} totalMilliseconds the elapsed time
+	 * @return {string} the clock face
+	 */
 	function formatTime(totalMilliseconds)
 	{
 
@@ -172,11 +208,17 @@ SRModules.timerController = (function(){
 		$('#' + config.timerID).removeClass(config['readyClass']);
 	}
 
+	/**
+	 * writes the elapsed time to the element
+	 */
 	controller.updateDisplay = function()
 	{
 		$('#' + config.timerID).html(SRModules.timer.getElapsedTime());
 	}
 
+	/**
+	 * sets the timer back to 0
+	 */
 	controller.resetDisplay = function()
 	{
 		SRModules.timer.reset();

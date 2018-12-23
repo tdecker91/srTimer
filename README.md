@@ -7,7 +7,7 @@ Download the timer.js file and put it in your web directory.
 
 OR
 
-Install the package using bower
+Install the package using npm
 ```bash
 npm install --save sr-timer
 ```

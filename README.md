@@ -41,6 +41,12 @@ timer.stop()
 const elapsed = timer.getElapsedTime()
 ```
 
+When you no longer need the timer make sure to call `unbind` to stop listening for keyevents
+```javascript
+timer.unbind();
+delete timer;
+```
+
 ## Registering Listeners
 Listeners can be registered to receive events when the timer starts, stops, ticks, or resets. This allows the timer to call your custom code to fit any of your application's needs. 
 ```javascript

@@ -1,7 +1,8 @@
-import { ListenerFunc, KeyCodes, TimerEvent } from "./models";
+import { KeyCodes } from "./models";
 import { formatTime } from "./util";
+import { ISRTimer, TimerEvent, ListenerFunc } from "sr-timer";
 
-export class SRTimer {
+export class SRTimer implements ISRTimer {
   private timerKey: number;
   private tickInterval: number;
 
@@ -95,14 +96,14 @@ export class SRTimer {
     return elapsedTime.getTime();
   }
 
-  start() {
+  start(): void {
     this.isReset = false;
     this.running = true;
     this.startTime = new Date().getTime();
     this.fireListeners<void>(this.startListeners, null);
   }
 
-  stop() {
+  stop(): void {
     this.running = false;
     this.endTime = new Date().getTime();
 
@@ -113,7 +114,7 @@ export class SRTimer {
     this.fireListeners<TimerEvent>(this.stopListeners, event);
   }
 
-  reset() {
+  reset(): void {
     if (!this.isReset) {
       this.isReset = true;
       this.startTime = undefined;
@@ -121,7 +122,7 @@ export class SRTimer {
     }
   }
 
-  isRunning() {
+  isRunning(): boolean {
     return this.running;
   }
 

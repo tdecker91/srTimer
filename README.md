@@ -16,7 +16,7 @@ npm install --save sr-timer
 Import the library
 
 ```javascript
-import { SRTimer } from 'sr-timer'
+import SRTimer from 'sr-timer'
 ```
 
 Create a new instance of the timer. The timer will automatically bind to window key events to listen for the spacebar to start / stop the timer.

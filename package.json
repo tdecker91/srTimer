@@ -1,6 +1,6 @@
 {
   "name": "sr-timer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple javascript timer application. Originally made to run my cube timer app at http://www.solvingrubik.com/ Can easily be included and configured to work on any webpage.",
   "main": "dist/main.js",
   "dependencies": {

@@ -1,17 +1,17 @@
-declare module 'sr-timer' {
-  export interface ISRTimer {
-    unbind: () => void;
-    start: () => void;
-    stop: () => void;
-    reset: () => void;
-    isRunning: () => boolean;
-    getElapsedTime: () => string;
-    addStartListener(listener: ListenerFunc<void>): void;
-    addStopListener(listener: ListenerFunc<TimerEvent>): void;
-    addResetListener(listener: ListenerFunc<void>): void;
-    addTickListener(listener: ListenerFunc<TimerEvent>): void;
-  }
+declare class SRTimer {
+  unbind: () => void;
+  start: () => void;
+  stop: () => void;
+  reset: () => void;
+  isRunning: () => boolean;
+  getElapsedTime: () => string;
+  addStartListener(listener: SRTimer.ListenerFunc<void>): void;
+  addStopListener(listener: SRTimer.ListenerFunc<SRTimer.TimerEvent>): void;
+  addResetListener(listener: SRTimer.ListenerFunc<void>): void;
+  addTickListener(listener: SRTimer.ListenerFunc<SRTimer.TimerEvent>): void;
+}
 
+declare namespace SRTimer {
   export type ListenerFunc<T> = (event: T) => void
 
   export type TimerEvent = {
@@ -19,3 +19,5 @@ declare module 'sr-timer' {
     displayTime: string; 
   }
 }
+
+export = SRTimer

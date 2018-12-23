@@ -1,8 +1,7 @@
-import { KeyCodes } from "./models";
+import { KeyCodes, ListenerFunc, TimerEvent } from "./models";
 import { formatTime } from "./util";
-import { ISRTimer, TimerEvent, ListenerFunc } from "sr-timer";
 
-export class SRTimer implements ISRTimer {
+export class SRTimer {
   private timerKey: number;
   private tickInterval: number;
 

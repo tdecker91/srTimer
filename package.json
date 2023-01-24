@@ -1,19 +1,18 @@
 {
   "name": "sr-timer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple javascript timer application. Originally made to run my cube timer app at http://www.solvingrubik.com/ Can easily be included and configured to work on any webpage.",
   "main": "dist/main.js",
   "dependencies": {
-    "ts-loader": "^5.3.2",
-    "typescript": "^3.2.2"
+    "ts-loader": "^5.4.5",
+    "typescript": "^3.9.10"
   },
   "devDependencies": {
-    "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "build": "webpack --mode production --config webpack.config.js --env.dist=true",
-    "dev": "webpack --progress --colors --watch --mode development --config webpack.config.js --env.dist=false"
+    "build": "webpack --mode production --config webpack.config.js"
   },
   "repository": {
     "type": "git",

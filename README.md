@@ -71,3 +71,16 @@ timer.addStopListener(stopEvent => {
   | `addStopListener(listener: (event: TimerEvent) => void)` | register listener for when the timer stops | `timer.addStopListener(event => { console.log('stopped', event) })` |
   | `addResetListener(listener: () => void)` | register listener for when the timer resets | `timer.addResetListener(() => { console.log('reset') })` |
   | `addTickListener(listener: (event: TimerEvent) => void)` | register listener for when the timer ticks | `timer.addTickListener(event => { console.log('tick', event) })` |
+
+## Development
+
+### Build the dist
+```bash
+npm run build
+```
+
+Publish to registry
+
+1. update version in `package.json`
+1. build bundle `npm run build` and build library `tsc`
+1. run `npm publish`

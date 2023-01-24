@@ -57,7 +57,7 @@ export default class SRTimer {
       clearInterval(this.ticker);
     } else {
       this.start();
-      this.ticker = setInterval(() => this.tickTimer(), this.tickInterval);
+      this.ticker = <any>(setInterval(() => this.tickTimer(), this.tickInterval));
     }
   }
 
